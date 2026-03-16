@@ -132,9 +132,29 @@ The following role assignments exist in the modules but are **not activated** in
 
 ## Deployment
 
+### Required Parameters
+
+Before deploying, configure the following `azd` environment variables. At minimum you must set `PROJECTS_COUNT`:
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `PROJECTS_COUNT` | **Yes** | Number of participant projects to create (e.g., `5` for 5 participants). Each project gets its own AI Foundry project and Capability Host. A trainer project is always added automatically (N+1 total). |
+| `AZURE_GROUP_PRINCIPAL_ID` | Recommended | Object ID of the Entra ID security group containing workshop participants. Enables all participant RBAC assignments (Reader, AI User, Storage, Search). Omit if you don't need group-based access. |
+| `STUDENTS_INITIALS` | Optional | Comma-separated list of student initials for human-readable project names (e.g., `"jsa,adb,mba"`). If provided, the count **must** match `PROJECTS_COUNT` exactly. When omitted, projects are numbered sequentially. |
+
+> **Note:** `AZURE_PRINCIPAL_ID` (the deployer's identity) is set automatically by `azd` from your logged-in session. You do not need to set it manually.
+
+### Steps
+
 ```bash
 cd foundry-workshop
 azd auth login
+
+# Configure parameters
+azd env set PROJECTS_COUNT 5
+azd env set AZURE_GROUP_PRINCIPAL_ID "00000000-0000-0000-0000-000000000000"  # your Entra group Object ID
+azd env set STUDENTS_INITIALS "jsa,adb,mba,klo,pbe"                         # optional
+
 azd up
 ```
 
