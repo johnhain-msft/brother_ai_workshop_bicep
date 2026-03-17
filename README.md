@@ -142,7 +142,7 @@ Before deploying, configure the following `azd` environment variables before run
 | `AZURE_GROUP_PRINCIPAL_ID` | Recommended | Object ID of the Entra ID security group containing workshop participants. Enables all participant RBAC assignments (Reader, AI User, Storage, Search). Omit if you don't need group-based access. |
 | `STUDENTS_INITIALS` | Optional | Comma-separated list of student initials for human-readable project names (e.g., `"jsa,adb,mba"`). If provided, the count **must** match `PROJECTS_COUNT` exactly. When omitted, projects are numbered sequentially. |
 
-These variables are read in `main.bicepparam` and forwarded to the corresponding Bicep parameters (`projectsCount`, `groupPrincipalId`, `studentsInitials`). The deployer's principal ID (`deployerPrincipalId`) is automatically resolved from the `AZURE_PRINCIPAL_ID` environment variable set by `azd`.
+These variables are read in `main.bicepparam` and forwarded to the corresponding Bicep parameters (`projectsCount`, `groupPrincipalId`, `studentsInitials`). 
 
 > **Note:** `AZURE_PRINCIPAL_ID` (the deployer's identity) is set automatically by `azd` from your logged-in session. You do not need to set it manually.
 
