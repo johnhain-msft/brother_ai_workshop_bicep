@@ -125,16 +125,31 @@ The following role assignments exist in the modules but are **not activated** in
 - [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli)
 - [Bicep CLI](https://learn.microsoft.com/azure/azure-resource-manager/bicep/install)
 - An Azure subscription with sufficient quota for the specified model deployments
-- (Optional) An Entra ID security group for workshop participants
-- (Optional) [uv](https://docs.astral.sh/uv/) for running the post-provisioning Python scripts
+- (Optional - but Recommended) An Entra ID security group for workshop participants
+- (Optional - but Recommended) [uv](https://docs.astral.sh/uv/) for running the post-provisioning Python scripts
 
 ---
+
+## Settings
+
+Configure the deployment by setting `azd` environment variables before running `azd up`:
+
+| Setting | Required | Description |
+|---------|----------|-------------|
+| `PROJECTS_COUNT` | Yes | Number of participant projects to create. A trainer project is always added on top (total = N + 1). |
+| `AZURE_GROUP_PRINCIPAL_ID` | No | Object ID of an Entra ID security group for workshop participants. When set, RBAC roles (Reader, AI User, Storage Blob Data Contributor, Search Contributor, etc.) are assigned to this group. |
+| `STUDENTS_INITIALS` | No | Comma-separated list of student initials (e.g. `aki,gna,sig`). Used to generate descriptive project names instead of numeric suffixes. Must contain exactly `PROJECTS_COUNT` entries if provided. |
+
+These variables are read in `main.bicepparam` and forwarded to the corresponding Bicep parameters (`projectsCount`, `groupPrincipalId`, `studentsInitials`). The deployer's principal ID (`deployerPrincipalId`) is automatically resolved from the `AZURE_PRINCIPAL_ID` environment variable set by `azd`.
 
 ## Deployment
 
 ```bash
 cd foundry-workshop
 azd auth login
+azd env set PROJECTS_COUNT 15
+azd env set AZURE_GROUP_PRINCIPAL_ID 1269314a-d8b6-423d-8ebb-1fee6f7f9335
+azd env set STUDENTS_INITIALS aki,gna,sig,mus,nki,svi,cgr,kpr,asa,st1,st2,st3,st4,st5,st6
 azd up
 ```
 
