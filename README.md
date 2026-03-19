@@ -173,7 +173,7 @@ The `azure.yaml` file defines the `azd` lifecycle hooks. After infrastructure pr
 To avoid local DNS/Networking issues, deployment can be executed from cloudshell.
 
 1. Go to https://shell.azure.com
-2. Clone this repository `git clone https://github.com/johnhain-msft/brother_ai_workshop_bicep.git`
+2. Clone this repository `git clone https://github.com/johnhain-msft/workshop_bicep.git`
 3. Install uv `curl -LsSf https://astral.sh/uv/install.sh | sh`
 4. Set variables
     ```bash
