@@ -295,7 +295,6 @@ output FOUNDRY_RESOURCE_ID string = foundry.outputs.FOUNDRY_RESOURCE_ID
 output FOUNDRY_VISION_DEPLOYMENT_NAME string = foundry.outputs.FOUNDRY_DEPLOYMENT_NAMES[0]
 output FOUNDRY_LLM_DEPLOYMENT_NAME string = foundry.outputs.FOUNDRY_DEPLOYMENT_NAMES[1]
 output FOUNDRY_CHAT_DEPLOYMENT_NAME string = foundry.outputs.FOUNDRY_DEPLOYMENT_NAMES[2]
-output FOUNDRY_VISION_DEPLOYMENT_NAME string = foundry.outputs.FOUNDRY_DEPLOYMENT_NAMES[0]
 output FOUNDRY_EMBEDDING_DEPLOYMENT string = foundry.outputs.FOUNDRY_DEPLOYMENT_NAMES[4]
 output FOUNDRY_OPENAI_ENDPOINT string = 'https://${foundry.outputs.FOUNDRY_NAME}.openai.azure.com/'
 output FOUNDRY_COGNITIVE_SERVICE_ENDPOINT string = foundry.outputs.FOUNDRY_ENDPOINT
